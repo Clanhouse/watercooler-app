@@ -1,20 +1,22 @@
 import { BrowserRouter } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Routing } from './config/routing/Routing';
 import { getFakeData } from './api/api';
-import { useEffect } from 'react';
-
 
 export const App = () => {
   useEffect(() => {
-    (async function() {
+    const fetchFakeData = async () => {
       const fakeData = await getFakeData();
       console.log(fakeData);
-    })();
-  }, [])
+      return fakeData;
+    };
+
+    fetchFakeData();
+  }, []);
 
   return (
     <BrowserRouter>
       <Routing />
     </BrowserRouter>
-  )
-}
+  );
+};

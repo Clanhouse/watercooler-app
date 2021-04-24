@@ -1,8 +1,8 @@
 export const NavigationPaths = {
-	HOMEPAGE: {
-		path: '/'
-	},
-	CONTACT: {
-		path: '/contact'
-	}
-}
+  HOMEPAGE: {
+    path: '/',
+  },
+  CONTACT: {
+    path: '/contact',
+  },
+};
