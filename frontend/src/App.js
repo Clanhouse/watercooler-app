@@ -1,7 +1,7 @@
-import { BrowserRouter } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Routing } from './config/routing/Routing';
+import { BrowserRouter } from 'react-router-dom';
 import { getFakeData } from './api/api';
+import { Routing } from './config/routing/Routing';
 
 export const App = () => {
   useEffect(() => {
