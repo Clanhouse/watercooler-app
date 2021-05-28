@@ -23,6 +23,7 @@ services:
                 TIMEZONE: ${TIMEZONE}
         volumes:
             - ./symfony/:/var/www/symfony/
+        command: /bin/bash -c "composer install && php-fpm"
         networks:
             - symfony
     nginx:
