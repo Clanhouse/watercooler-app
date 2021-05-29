@@ -20,7 +20,7 @@ export default function Button({
     <button
       type={type}
       onClick={onClick}
-      className={`btn ${buttonSize} ${buttonStyles}`}
+      className={`btn ${buttonSize} ${buttonStyles} `}
     >
       <Link to={buttonLink}>{isLoading ? <Loader /> : value}</Link>
     </button>

@@ -1,5 +1,5 @@
 .btn {
-  @apply transition-all duration-300  shadow-md hover:shadow-lg font-semibold rounded-md uppercase transform hover:translate-y-2 text-white;
+  @apply transition-all duration-300  shadow-md hover:shadow-lg font-semibold rounded-md uppercase transform hover:translate-y-2 text-white relative;
 }
 .primary {
   @apply bg-green-400  hover:bg-green-500;
