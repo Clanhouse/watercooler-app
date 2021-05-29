@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './button.css';
-
+import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
 
 export default function Button({
