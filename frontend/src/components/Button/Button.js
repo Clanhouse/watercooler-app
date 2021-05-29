@@ -1,4 +1,6 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './button.css';
 import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
@@ -6,31 +8,38 @@ import Loader from '../Loader/Loader';
 export default function Button({
   buttonSize,
   buttonLink,
+  buttonStyles,
   isLoading,
   onClick,
-  action,
+  type,
+  value,
 }) {
+  // eslint-disable-next-line no-unused-vars
+  const STYLES = [];
   return (
     <button
-      type={action ? 'button' : 'submit'}
+      type={type}
       onClick={onClick}
-      className={buttonSize}
+      className={`btn ${buttonSize} ${buttonStyles}`}
     >
-      {isLoading ? <Loader /> : buttonLink}
+      <Link to={buttonLink}>{isLoading ? <Loader /> : value}</Link>
     </button>
   );
 }
 Button.defaultProps = {
-  action: true,
   buttonSize: 'small',
-  buttonLink: 'click',
+  buttonStyles: 'primary',
+  type: 'button',
   isLoading: false,
+  value: 'click',
 };
 
 Button.propTypes = {
-  buttonSize: PropTypes.string,
-  action: PropTypes.bool,
-  buttonLink: PropTypes.string,
-  isLoading: PropTypes.bool,
+  type: PropTypes.string,
   onClick: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  buttonLink: PropTypes.string.isRequired,
+  buttonSize: PropTypes.string,
+  buttonStyles: PropTypes.string,
+  isLoading: PropTypes.bool,
 };
