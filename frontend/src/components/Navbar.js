@@ -11,7 +11,6 @@ export const Navbar = () => (
       isLoading={false}
       styles="secondary"
       link="/"
-      onClick={() => console.log('Siema')}
     >
       Hejo
     </Button>

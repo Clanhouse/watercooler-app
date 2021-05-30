@@ -35,13 +35,17 @@ Button.defaultProps = {
   type: 'button',
   isLoading: false,
   children: 'click',
+  link: '/',
+  onClick: () => {
+    console.log('Foo');
+  },
 };
 
 Button.propTypes = {
   type: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   children: PropTypes.node,
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
   size: PropTypes.string,
   styles: PropTypes.string,
   isLoading: PropTypes.bool,
