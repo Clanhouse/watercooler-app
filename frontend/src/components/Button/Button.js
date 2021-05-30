@@ -6,40 +6,43 @@ import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
 
 export default function Button({
-  buttonSize,
-  buttonLink,
-  buttonStyles,
+  size,
+  link,
+  styles,
   isLoading,
   onClick,
   type,
-  value,
+  children,
 }) {
-  // eslint-disable-next-line no-unused-vars
-  const STYLES = [];
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={`btn ${buttonSize} ${buttonStyles} `}
-    >
-      <Link to={buttonLink}>{isLoading ? <Loader /> : value}</Link>
-    </button>
+    <Link to={link}>
+      <button
+        type={type}
+        onClick={onClick}
+        className={`btn ${size} ${styles} ${
+          isLoading ? 'pointer-events-none' : null
+        }`}
+        disabled={isLoading}
+      >
+        {isLoading ? <Loader /> : children}
+      </button>
+    </Link>
   );
 }
 Button.defaultProps = {
-  buttonSize: 'small',
-  buttonStyles: 'primary',
+  size: 'small',
+  styles: 'primary',
   type: 'button',
   isLoading: false,
-  value: 'click',
+  children: 'click',
 };
 
 Button.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  value: PropTypes.string,
-  buttonLink: PropTypes.string.isRequired,
-  buttonSize: PropTypes.string,
-  buttonStyles: PropTypes.string,
+  children: PropTypes.node,
+  link: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  styles: PropTypes.string,
   isLoading: PropTypes.bool,
 };
