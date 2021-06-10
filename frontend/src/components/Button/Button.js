@@ -1,14 +1,13 @@
 /* eslint-disable react/button-has-type */
-import React from 'react';
 import { Link } from 'react-router-dom';
-import './button.css';
 import PropTypes from 'prop-types';
+import styles from './button.module.css';
 import Loader from '../Loader/Loader';
 
 export default function Button({
   size,
   link,
-  styles,
+  color,
   isLoading,
   onClick,
   type,
@@ -19,7 +18,7 @@ export default function Button({
       <button
         type={type}
         onClick={onClick}
-        className={`btn ${size} ${styles} ${
+        className={`${styles.btn} ${styles[size]} ${styles[color]} ${
           isLoading ? 'pointer-events-none' : null
         }`}
         disabled={isLoading}
@@ -31,7 +30,7 @@ export default function Button({
 }
 Button.defaultProps = {
   size: 'small',
-  styles: 'primary',
+  color: 'primary',
   type: 'button',
   isLoading: false,
   children: 'click',
@@ -47,6 +46,6 @@ Button.propTypes = {
   children: PropTypes.node,
   link: PropTypes.string,
   size: PropTypes.string,
-  styles: PropTypes.string,
+  color: PropTypes.string,
   isLoading: PropTypes.bool,
 };

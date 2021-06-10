@@ -1,6 +1,5 @@
-import React from 'react';
-import './loader.css';
+import styles from './loader.module.css';
 
 export default function Loader() {
-  return <div className="loader" />;
+  return <div className={styles.loader} />;
 }
