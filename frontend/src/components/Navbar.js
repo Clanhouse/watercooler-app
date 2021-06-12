@@ -9,7 +9,7 @@ export const Navbar = () => (
     <Button
       size="medium"
       isLoading={false}
-      styles="secondary"
+      color="secondary"
       link="/"
     >
       Hejo
