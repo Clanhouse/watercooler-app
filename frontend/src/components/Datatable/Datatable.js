@@ -16,6 +16,36 @@ const DataTable = ({
   setPerPage,
   enableServerSidePagination,
 }) => {
+  const rowActions = [];
+
+  if (onEdit) {
+    rowActions.push({
+      cell: () => (
+        <button type="button" onClick={onEdit}>
+          Edit
+        </button>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
+    });
+  }
+
+  if (onDelete) {
+    rowActions.push({
+      cell: () => (
+        <button type="button" onClick={onDelete}>
+          Delete
+        </button>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
+    });
+  }
+
+  const updatedColumns = [...columns, ...rowActions];
+
   return (
     <Table
       onDelete={onDelete}
@@ -27,7 +57,7 @@ const DataTable = ({
       setSearchText={setSearchText}
       isLoading={loading}
       data={data}
-      columns={columns}
+      columns={updatedColumns}
       perPage={perPage}
       setPerPage={setPerPage}
       enableServerSidePagination={enableServerSidePagination}
@@ -39,9 +69,9 @@ DataTable.defaultProps = {
   onDelete: null,
   onEdit: null,
   onAddNew: null,
-  currentPage: null,
+  currentPage: 1,
   setCurrentPage: null,
-  searchText: '*',
+  searchText: '',
   setSearchText: null,
   loading: true,
   data: [],
