@@ -1,48 +1,43 @@
 import Table from 'react-data-table-component';
 import PropTypes from 'prop-types';
 
-const DataTable = ({
-  onDelete,
-  onEdit,
-  onAddNew,
-  currentPage,
-  setCurrentPage,
-  searchText,
-  setSearchText,
-  loading,
-  data,
-  columns,
-  perPage,
-  setPerPage,
-  enableServerSidePagination,
-}) => {
-  const rowActions = [];
+const DataTable = (props) => {
+  const {
+    onDelete,
+    onEdit,
+    onAdd,
+    currentPage,
+    setCurrentPage,
+    searchText,
+    setSearchText,
+    loading,
+    data,
+    columns,
+    perPage,
+    setPerPage,
+    enableServerSidePagination,
+  } = props;
 
-  if (onEdit) {
-    rowActions.push({
-      cell: () => (
-        <button type="button" onClick={onEdit}>
-          Edit
-        </button>
-      ),
-      ignoreRowClick: true,
-      allowOverflow: true,
-      button: true,
-    });
-  }
+  const allowedRowActions = [
+    { name: 'onEdit', color: 'blue', icon: 'icon' },
+    { name: 'onDelete', color: 'red', icon: 'icon' },
+  ];
 
-  if (onDelete) {
-    rowActions.push({
-      cell: () => (
-        <button type="button" onClick={onDelete}>
-          Delete
-        </button>
-      ),
-      ignoreRowClick: true,
-      allowOverflow: true,
-      button: true,
+  const rowActions = allowedRowActions
+    .filter((action) => props[action.name])
+    .map((action) => {
+      const btnAction = props[action.name];
+      return {
+        cell: () => (
+          <button type="button" onClick={btnAction}>
+            {action.name.substring(2)}
+          </button>
+        ),
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+      };
     });
-  }
 
   const updatedColumns = [...columns, ...rowActions];
 
@@ -50,7 +45,7 @@ const DataTable = ({
     <Table
       onDelete={onDelete}
       onEdit={onEdit}
-      onAddNew={onAddNew}
+      onAdd={onAdd}
       currentPage={currentPage}
       setCurrentPage={setCurrentPage}
       searchText={searchText}
@@ -68,7 +63,7 @@ const DataTable = ({
 DataTable.defaultProps = {
   onDelete: null,
   onEdit: null,
-  onAddNew: null,
+  onAdd: null,
   currentPage: 1,
   setCurrentPage: null,
   searchText: '',
@@ -84,7 +79,7 @@ DataTable.defaultProps = {
 DataTable.propTypes = {
   onDelete: PropTypes.func,
   onEdit: PropTypes.func,
-  onAddNew: PropTypes.func,
+  onAdd: PropTypes.func,
   currentPage: PropTypes.number,
   setCurrentPage: PropTypes.func,
   searchText: PropTypes.string,
