@@ -1,6 +1,9 @@
 import Table from 'react-data-table-component';
 import PropTypes from 'prop-types';
 
+import { ReactComponent as EditIcon } from '../../assets/editIcon.svg';
+import { ReactComponent as DeleteIcon } from '../../assets/deleteIcon.svg';
+
 const DataTable = (props) => {
   const {
     onDelete,
@@ -19,8 +22,8 @@ const DataTable = (props) => {
   } = props;
 
   const allowedRowActions = [
-    { name: 'onEdit', color: 'blue', icon: 'icon' },
-    { name: 'onDelete', color: 'red', icon: 'icon' },
+    { name: 'onEdit', icon: <EditIcon fill="blue" /> },
+    { name: 'onDelete', icon: <DeleteIcon fill="red" /> },
   ];
 
   const rowActions = allowedRowActions
@@ -30,6 +33,7 @@ const DataTable = (props) => {
       return {
         cell: () => (
           <button type="button" onClick={btnAction}>
+            {action.icon}
             {action.name.substring(2)}
           </button>
         ),
