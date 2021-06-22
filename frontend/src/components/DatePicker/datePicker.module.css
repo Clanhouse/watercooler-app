@@ -1,0 +1,8 @@
+.datePicker {
+  @apply border  border-green-400 rounded p-2 shadow-md bg-gradient-to-br from-green-100 to-green-300 text-green-600;
+}
+.datePicker::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.5;
+  filter: invert(0.2);
+}
