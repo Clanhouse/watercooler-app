@@ -7,6 +7,7 @@ export default function DatePicker({ children }) {
     date: new Date(Date.now()),
   });
   const dateFromPicker = (event) => {
+    console.log(dateState);
     return setDateState({ date: new Date(event.target.value) });
   };
 
@@ -14,6 +15,7 @@ export default function DatePicker({ children }) {
     <div>
       <label htmlFor="date">
         {children}
+
         <input
           name="date"
           className={`${styles.datePicker}`}
