@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import styles from './datePicker.module.css';
 
-export default function DatePicker({ children }) {
+export default function DatePicker({ children, name }) {
   const [dateState, setDateState] = useState({
     date: new Date(Date.now()),
   });
@@ -13,11 +13,11 @@ export default function DatePicker({ children }) {
 
   return (
     <div>
-      <label htmlFor="date">
+      <label htmlFor={`${name}`}>
         {children}
 
         <input
-          name="date"
+          name={`${name}`}
           className={`${styles.datePicker}`}
           type="date"
           pattern="\d{4}-\d{2}-\d{2}"
@@ -31,9 +31,8 @@ export default function DatePicker({ children }) {
   );
 }
 
-DatePicker.defaultProps = {
-  children: '',
-};
+DatePicker.defaultProps = {};
 DatePicker.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };

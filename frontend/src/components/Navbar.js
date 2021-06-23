@@ -1,18 +1,12 @@
 import { Link } from 'react-router-dom';
-import DatePicker from './DatePicker/DatePicker';
+import SelectInput from './InputSelect/SelectInput';
 
 export const Navbar = () => (
   <nav>
     <Link to="/">Home</Link>
     <Link to="/contact">Contact</Link>
-    {/* <Button
-      size="medium"
-      isLoading={false}
-      color="secondary"
-      link="/"
-    >
-      Hejo
-    </Button> */}
-    <DatePicker />
+    <SelectInput name="cars" options={['volvo', 'malczer']}>
+      KEK
+    </SelectInput>
   </nav>
 );
