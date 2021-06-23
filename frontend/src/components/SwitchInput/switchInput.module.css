@@ -1,0 +1,24 @@
+.switch__label {
+  @apply relative inline-block;
+  width: 5rem;
+  height: 3rem;
+}
+.switch__input {
+  @apply opacity-0 w-0 h-0;
+}
+.switch__label {
+  @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-green-400 transition  duration-150;
+}
+.switch__label:before {
+  @apply absolute left-1 bottom-1 bg-white transition duration-150;
+  content: '';
+  height: 2rem;
+  width: 2rem;
+}
+.switch__input:is(:checked) + .switch__label {
+  @apply bg-green-600;
+}
+.switch__input:is(checked) + .switch__label:before {
+  transform: translateX(2rem);
+}
+/* // TODO: Add styles for switch element */
