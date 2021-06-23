@@ -7,27 +7,24 @@ export default function DatePicker({ children, name }) {
     date: new Date(Date.now()),
   });
   const dateFromPicker = (event) => {
-    console.log(dateState);
     return setDateState({ date: new Date(event.target.value) });
   };
 
   return (
-    <div>
-      <label htmlFor={`${name}`}>
-        {children}
+    <label htmlFor={`${name}`}>
+      {children}
 
-        <input
-          name={`${name}`}
-          className={`${styles.datePicker}`}
-          type="date"
-          pattern="\d{4}-\d{2}-\d{2}"
-          min="1900-01-01"
-          max="2100-01-01"
-          value={dateState.value}
-          onChange={dateFromPicker}
-        />
-      </label>
-    </div>
+      <input
+        name={`${name}`}
+        className={`${styles.datePicker}`}
+        type="date"
+        pattern="\d{4}-\d{2}-\d{2}"
+        min="1900-01-01"
+        max="2100-01-01"
+        value={dateState.value}
+        onChange={dateFromPicker}
+      />
+    </label>
   );
 }
 
