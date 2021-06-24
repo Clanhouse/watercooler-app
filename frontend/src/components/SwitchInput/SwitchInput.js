@@ -1,23 +1,34 @@
 import PropTypes from 'prop-types';
-import styles from './switchInput.module.css';
+import './switchInput.module.css';
 
-export default function SwitchInput({ name }) {
+export default function SwitchInput({
+  name,
+  value,
+  checked,
+  children,
+}) {
   return (
-    <label htmlFor={`${name}`} className={`${styles.switch__label}`}>
-      <input
-        name={`${name}`}
-        type="checkbox"
-        className={`${styles.switch__input}`}
-      />
-      <span className={`${styles.switch__slider}`} />
-    </label>
+    <>
+      <label htmlFor={name}>
+        {children || null}
+        <input
+          defaultValue={value || false}
+          name={name}
+          type="checkbox"
+          checked={checked}
+        />
+      </label>
+    </>
   );
 }
 
 SwitchInput.defaultProps = {
-  name: 'switch',
+  children: '',
 };
 
 SwitchInput.propTypes = {
-  name: PropTypes.string,
+  children: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
