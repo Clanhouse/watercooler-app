@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
 import './switchInput.module.css';
+import { useState } from 'react';
 
-export default function SwitchInput({
-  name,
-  value,
-  checked,
-  children,
-}) {
+export default function SwitchInput({ name, children }) {
+  const [switchValue, setSwitchValue] = useState(false);
+  const handleChange = () => {
+    setSwitchValue(!switchValue);
+  };
   return (
     <>
       <label htmlFor={name}>
         {children || null}
         <input
-          defaultValue={value || false}
           name={name}
           type="checkbox"
-          checked={checked}
+          value={switchValue}
+          onChange={handleChange}
         />
       </label>
     </>
@@ -28,7 +28,5 @@ SwitchInput.defaultProps = {
 
 SwitchInput.propTypes = {
   children: PropTypes.string,
-  value: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  checked: PropTypes.bool.isRequired,
 };

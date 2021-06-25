@@ -5,6 +5,6 @@ export const Navbar = () => (
   <nav>
     <Link to="/">Home</Link>
     <Link to="/contact">Contact</Link>
-    <SwitchInput />
+    <SwitchInput name="lel" />
   </nav>
 );
