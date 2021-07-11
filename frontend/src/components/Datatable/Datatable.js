@@ -1,25 +1,41 @@
+import { useState, useImperativeHandle, forwardRef } from 'react';
 import Table from 'react-data-table-component';
 import PropTypes from 'prop-types';
 
 import { ReactComponent as EditIcon } from '../../assets/editIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/deleteIcon.svg';
 
-const DataTable = (props) => {
+const DataTable = forwardRef((props, ref) => {
   const {
+    title,
     onDelete,
     onEdit,
     onAdd,
     currentPage,
     setCurrentPage,
-    searchText,
-    setSearchText,
     loading,
     data,
     columns,
     perPage,
     setPerPage,
+    enablePagination,
     enableServerSidePagination,
   } = props;
+
+  const [activePage, setActivePage] = useState(currentPage);
+  const [resultsPerPage, setResultsPerPage] = useState(perPage);
+
+  useImperativeHandle(ref, () => ({
+    changeActivePageHandler() {
+      const page = setCurrentPage();
+      setActivePage(page);
+    },
+
+    changeNumberOfRowsPerPageHandler() {
+      const rowsToShow = setPerPage();
+      setResultsPerPage(rowsToShow);
+    },
+  }));
 
   const allowedRowActions = [
     { name: 'onEdit', icon: <EditIcon fill="blue" /> },
@@ -34,7 +50,6 @@ const DataTable = (props) => {
         cell: () => (
           <button type="button" onClick={btnAction}>
             {action.icon}
-            {action.name.substring(2)}
           </button>
         ),
         ignoreRowClick: true,
@@ -47,52 +62,50 @@ const DataTable = (props) => {
 
   return (
     <Table
+      title={title}
+      pagination={enablePagination}
       onDelete={onDelete}
       onEdit={onEdit}
       onAdd={onAdd}
-      currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
-      searchText={searchText}
-      setSearchText={setSearchText}
-      isLoading={loading}
+      paginationDefaultPage={activePage}
+      progressPending={loading}
       data={data}
       columns={updatedColumns}
-      perPage={perPage}
-      setPerPage={setPerPage}
-      enableServerSidePagination={enableServerSidePagination}
+      paginationPerPage={resultsPerPage}
+      paginationServer={enableServerSidePagination}
     />
   );
-};
+});
 
 DataTable.defaultProps = {
+  title: '',
   onDelete: null,
   onEdit: null,
   onAdd: null,
   currentPage: 1,
   setCurrentPage: null,
-  searchText: '',
-  setSearchText: null,
-  loading: true,
+  loading: false,
   data: [],
   columns: [],
-  perPage: 10,
+  perPage: 15,
   setPerPage: null,
+  enablePagination: true,
   enableServerSidePagination: false,
 };
 
 DataTable.propTypes = {
+  title: PropTypes.string,
   onDelete: PropTypes.func,
   onEdit: PropTypes.func,
   onAdd: PropTypes.func,
   currentPage: PropTypes.number,
   setCurrentPage: PropTypes.func,
-  searchText: PropTypes.string,
-  setSearchText: PropTypes.func,
   loading: PropTypes.bool,
   data: PropTypes.arrayOf(PropTypes.object),
   columns: PropTypes.arrayOf(PropTypes.object),
   perPage: PropTypes.number,
   setPerPage: PropTypes.func,
+  enablePagination: PropTypes.bool,
   enableServerSidePagination: PropTypes.bool,
 };
 
