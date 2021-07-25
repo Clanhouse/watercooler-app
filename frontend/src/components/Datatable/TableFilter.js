@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import styles from './TableFilter.module.css';
 
 const TableFilter = (props) => {
   const {
@@ -15,11 +16,11 @@ const TableFilter = (props) => {
   };
 
   return (
-    <>
+    <div className={styles.TableFilter}>
       <input
         id="search"
         type="text"
-        placeholder="Filter By Name"
+        placeholder="Filter by data"
         aria-label="Search Input"
         value={filterText}
         onChange={(e) => onFilter(e.target.value)}
@@ -27,7 +28,7 @@ const TableFilter = (props) => {
       <button type="button" onClick={onClearHandler}>
         X
       </button>
-    </>
+    </div>
   );
 };
 
