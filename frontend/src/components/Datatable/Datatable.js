@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { matchSorter } from 'match-sorter';
+import queryString from 'query-string';
+import { useLocation } from 'react-router-dom';
 
 import Table from 'react-data-table-component';
 import TableFilter from './TableFilter';
@@ -24,8 +26,11 @@ const DataTable = (props) => {
     perPage,
     setPerPage,
     enablePagination,
-    enableServerSidePagination,
+    enableSSR,
   } = props;
+
+  const { search } = useLocation();
+  const values = queryString.parse(search);
 
   const addEntryHandler = (e) => {
     e.preventDefault();
@@ -59,8 +64,8 @@ const DataTable = (props) => {
   let filteredItems = data;
   const columnNames = columns.map((column) => column.selector);
 
-  if (searchText) {
-    const query = searchText.split(' ');
+  if (searchText || values.keyword) {
+    const query = searchText.split(' ') ?? values.keyword;
 
     filteredItems = query.reduceRight(
       (items, text) =>
@@ -93,11 +98,11 @@ const DataTable = (props) => {
         onEdit={onEdit}
         onAdd={onAddNew}
         pagination={enablePagination}
-        paginationServer={enableServerSidePagination}
-        paginationDefaultPage={currentPage}
+        paginationServer={enableSSR}
+        paginationDefaultPage={enableSSR ? values.page : currentPage}
         paginationResetDefaultPage={resetPaginationToggle}
         onChangePage={(page) => setCurrentPage(page)}
-        paginationPerPage={perPage}
+        paginationPerPage={enableSSR ? values.limit : perPage}
         onChangeRowsPerPage={(currentRowsPerPage, activePage) => {
           setPerPage(currentRowsPerPage);
           setCurrentPage(activePage);
@@ -125,7 +130,7 @@ DataTable.defaultProps = {
   perPage: 15,
   setPerPage: () => {},
   enablePagination: true,
-  enableServerSidePagination: false,
+  enableSSR: false,
 };
 
 DataTable.propTypes = {
@@ -143,7 +148,7 @@ DataTable.propTypes = {
   perPage: PropTypes.number,
   setPerPage: PropTypes.func,
   enablePagination: PropTypes.bool,
-  enableServerSidePagination: PropTypes.bool,
+  enableSSR: PropTypes.bool,
 };
 
 export default DataTable;
