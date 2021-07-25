@@ -62,7 +62,9 @@ const DataTable = (props) => {
 
   const [resetPaginationToggle, setResetPagination] = useState(false);
   let filteredItems = data;
-  const columnNames = columns.map((column) => column.selector);
+  const columnNames = columns
+    .filter((column) => column.filterable === true)
+    .map((column) => column.selector);
 
   if (searchText || values.keyword) {
     const query = searchText.split(' ') ?? values.keyword;
