@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { matchSorter } from 'match-sorter';
 
 import Table from 'react-data-table-component';
 import TableFilter from './TableFilter';
@@ -55,6 +56,15 @@ const DataTable = (props) => {
   const updatedColumns = [...columns, ...rowActions];
 
   const [resetPaginationToggle, setResetPagination] = useState(false);
+  let filteredItems = data;
+  const columnNames = columns.map((column) => column.selector);
+
+  if (searchText) {
+    filteredItems = matchSorter(data, searchText, {
+      keys: columnNames,
+      searchText,
+    });
+  }
 
   return (
     <>
@@ -72,8 +82,8 @@ const DataTable = (props) => {
       <Table
         title={title}
         noHeader={!title}
+        subHeader={false}
         highlightOnHover
-        subHeader
         onDelete={onDelete}
         onEdit={onEdit}
         onAdd={onAddNew}
@@ -88,7 +98,7 @@ const DataTable = (props) => {
           setCurrentPage(activePage);
         }}
         progressPending={loading}
-        data={data}
+        data={filteredItems}
         columns={updatedColumns}
       />
     </>
