@@ -1,18 +1,22 @@
-import { useState, useImperativeHandle, forwardRef } from 'react';
-import Table from 'react-data-table-component';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+
+import Table from 'react-data-table-component';
+import TableFilter from './TableFilter';
 
 import { ReactComponent as EditIcon } from '../../assets/editIcon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/deleteIcon.svg';
 
-const DataTable = forwardRef((props, ref) => {
+const DataTable = (props) => {
   const {
     title,
     onDelete,
     onEdit,
-    onAdd,
+    onAddNew,
     currentPage,
     setCurrentPage,
+    searchText,
+    setSearchText,
     loading,
     data,
     columns,
@@ -22,20 +26,10 @@ const DataTable = forwardRef((props, ref) => {
     enableServerSidePagination,
   } = props;
 
-  const [activePage, setActivePage] = useState(currentPage);
-  const [resultsPerPage, setResultsPerPage] = useState(perPage);
-
-  useImperativeHandle(ref, () => ({
-    changeActivePageHandler() {
-      const page = setCurrentPage();
-      setActivePage(page);
-    },
-
-    changeNumberOfRowsPerPageHandler() {
-      const rowsToShow = setPerPage();
-      setResultsPerPage(rowsToShow);
-    },
-  }));
+  const addEntryHandler = (e) => {
+    e.preventDefault();
+    onAddNew();
+  };
 
   const allowedRowActions = [
     { name: 'onEdit', icon: <EditIcon fill="blue" /> },
@@ -60,35 +54,61 @@ const DataTable = forwardRef((props, ref) => {
 
   const updatedColumns = [...columns, ...rowActions];
 
+  const [resetPaginationToggle, setResetPagination] = useState(false);
+
   return (
-    <Table
-      title={title}
-      pagination={enablePagination}
-      onDelete={onDelete}
-      onEdit={onEdit}
-      onAdd={onAdd}
-      paginationDefaultPage={activePage}
-      progressPending={loading}
-      data={data}
-      columns={updatedColumns}
-      paginationPerPage={resultsPerPage}
-      paginationServer={enableServerSidePagination}
-    />
+    <>
+      {onAddNew && (
+        <button type="button" onClick={addEntryHandler}>
+          + Add
+        </button>
+      )}
+      <TableFilter
+        filterText={searchText}
+        onFilter={setSearchText}
+        resetPaginationToggle={resetPaginationToggle}
+        resetPagination={setResetPagination}
+      />
+      <Table
+        title={title}
+        noHeader={!title}
+        highlightOnHover
+        subHeader
+        onDelete={onDelete}
+        onEdit={onEdit}
+        onAdd={onAddNew}
+        pagination={enablePagination}
+        paginationServer={enableServerSidePagination}
+        paginationDefaultPage={currentPage}
+        paginationResetDefaultPage={resetPaginationToggle}
+        onChangePage={(page) => setCurrentPage(page)}
+        paginationPerPage={perPage}
+        onChangeRowsPerPage={(currentRowsPerPage, activePage) => {
+          setPerPage(currentRowsPerPage);
+          setCurrentPage(activePage);
+        }}
+        progressPending={loading}
+        data={data}
+        columns={updatedColumns}
+      />
+    </>
   );
-});
+};
 
 DataTable.defaultProps = {
   title: '',
   onDelete: null,
   onEdit: null,
-  onAdd: null,
+  onAddNew: null,
   currentPage: 1,
-  setCurrentPage: null,
+  setCurrentPage: () => {},
+  searchText: '',
+  setSearchText: () => {},
   loading: false,
   data: [],
   columns: [],
   perPage: 15,
-  setPerPage: null,
+  setPerPage: () => {},
   enablePagination: true,
   enableServerSidePagination: false,
 };
@@ -97,9 +117,11 @@ DataTable.propTypes = {
   title: PropTypes.string,
   onDelete: PropTypes.func,
   onEdit: PropTypes.func,
-  onAdd: PropTypes.func,
+  onAddNew: PropTypes.func,
   currentPage: PropTypes.number,
   setCurrentPage: PropTypes.func,
+  searchText: PropTypes.string,
+  setSearchText: PropTypes.func,
   loading: PropTypes.bool,
   data: PropTypes.arrayOf(PropTypes.object),
   columns: PropTypes.arrayOf(PropTypes.object),
