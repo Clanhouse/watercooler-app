@@ -60,10 +60,15 @@ const DataTable = (props) => {
   const columnNames = columns.map((column) => column.selector);
 
   if (searchText) {
-    filteredItems = matchSorter(data, searchText, {
-      keys: columnNames,
-      searchText,
-    });
+    const query = searchText.split(' ');
+
+    filteredItems = query.reduceRight(
+      (items, text) =>
+        matchSorter(items, text, {
+          keys: columnNames,
+        }),
+      data
+    );
   }
 
   return (
