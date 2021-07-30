@@ -1,18 +1,10 @@
 import { Link } from 'react-router-dom';
-
-import Button from './Button/Button';
+import SwitchInput from './SwitchInput/SwitchInput';
 
 export const Navbar = () => (
   <nav>
     <Link to="/">Home</Link>
     <Link to="/contact">Contact</Link>
-    <Button
-      size="medium"
-      isLoading={false}
-      color="secondary"
-      link="/"
-    >
-      Hejo
-    </Button>
+    <SwitchInput name="lel" />
   </nav>
 );
