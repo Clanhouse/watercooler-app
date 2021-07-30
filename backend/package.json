@@ -1,0 +1,36 @@
+{
+  "name": "watercool-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "test": "npm run test",
+    "start": "tsc && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Clanhouse/watercooler-app.git"
+  },
+  "author": "Clanhouse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Clanhouse/watercooler-app/issues"
+  },
+  "homepage": "https://github.com/Clanhouse/watercooler-app#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.1",
+    "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.13",
+    "@types/mysql": "^2.15.19",
+    "@types/node": "^16.4.7",
+    "typescript": "^4.3.5"
+  }
+}
