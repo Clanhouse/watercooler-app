@@ -1,0 +1,17 @@
+.TableFilter {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2rem;
+}
+
+.TableFilter input {
+  font-family: inherit;
+  border: 1px solid rgb(229, 231, 235);
+  border-radius: 2px;
+  padding: 0.2rem 0.5rem;
+}
+
+.TableFilter button {
+  font-family: inherit;
+  margin-left: 0.5rem;
+}
