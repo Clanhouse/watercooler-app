@@ -11,7 +11,8 @@ export const Menu = () => {
       <NavLink
         className={styles.navItem}
         activeClassName={styles.activeNavItem}
-        to="/home"
+        to="/"
+        exact
       >
         <img
           className={styles.navIcon}
