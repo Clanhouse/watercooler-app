@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Menu.module.css';
 import HomeIcon from '../../assets/home.svg';
+import CalendarIcon from '../../assets/calendar.svg';
+import RatingIcon from '../../assets/rating.svg';
+import CollaborationIcon from '../../assets/collaboration.svg';
 
 export const Menu = () => {
   return (
@@ -24,7 +27,7 @@ export const Menu = () => {
       >
         <img
           className={styles.navIcon}
-          src={HomeIcon}
+          src={CalendarIcon}
           alt="Calendar icon"
         />
         Events
@@ -36,8 +39,8 @@ export const Menu = () => {
       >
         <img
           className={styles.navIcon}
-          src={HomeIcon}
-          alt="2 people and a blue flag"
+          src={CollaborationIcon}
+          alt="2 people and a speech bubbles above them"
         />
         Groups
       </NavLink>
@@ -48,7 +51,7 @@ export const Menu = () => {
       >
         <img
           className={styles.navIcon}
-          src={HomeIcon}
+          src={RatingIcon}
           alt="Golden star on fullfiled red circle"
         />
         Challenges
