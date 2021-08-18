@@ -1,3 +1,12 @@
+import { Header } from '../components/Header/Header';
+import { Footer } from '../components/Footer/Footer';
+
 export const Groups = () => {
-  return <p>Groups</p>;
+  return (
+    <>
+      <Header />
+      <p>Groups</p>
+      <Footer />
+    </>
+  );
 };

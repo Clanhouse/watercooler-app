@@ -1,3 +1,12 @@
+import { Header } from '../components/Header/Header';
+import { Footer } from '../components/Footer/Footer';
+
 export const Challenges = () => {
-  return <p>Challenges</p>;
+  return (
+    <>
+      <Header />
+      <p>Challenges</p>
+      <Footer />
+    </>
+  );
 };
