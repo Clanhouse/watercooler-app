@@ -14,7 +14,7 @@ const Avatar = ({ source, size }) => {
 
 Avatar.propTypes = {
   source: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 Avatar.defaultProps = {
