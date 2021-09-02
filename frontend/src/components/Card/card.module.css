@@ -1,0 +1,21 @@
+.card {
+  @apply bg-white;
+  width: 90%;
+  display: flex;
+  margin: 10px;
+  border-radius: 15px;
+  font-family: inherited;
+}
+
+.card__header {
+  display: flex;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.container {
+  @apply bg-gray-300;
+  box-sizing: border-box;
+  width: 500px;
+  padding: 10px 0;
+}

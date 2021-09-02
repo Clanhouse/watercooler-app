@@ -1,0 +1,27 @@
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 0 10px;
+  font-family: inherited;
+}
+
+.cardContent__userInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cardContent__userName {
+  @apply text-base font-semibold;
+}
+
+.cardContent__userPosition {
+  @apply text-xs font-extralight;
+  display: block;
+  margin-left: 10px;
+  padding-top: 2px;
+}
+
+.cardContent__text {
+}
