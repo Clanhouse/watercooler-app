@@ -1,7 +1,7 @@
-import { Navbar } from '../Navbar';
+import { Menu } from '../Menu/Menu';
 
 export const Header = () => (
   <header>
-    <Navbar />
+    <Menu />
   </header>
 );

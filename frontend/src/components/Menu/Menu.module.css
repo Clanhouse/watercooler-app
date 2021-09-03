@@ -1,0 +1,43 @@
+.nav {
+  display: flex;
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -5%);
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  z-index: 100;
+}
+
+.navItem:first-child {
+  padding-left: 50px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.navItem:last-child {
+  padding-right: 40px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 30px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: rgb(105, 105, 105);
+}
+
+.activeNavItem {
+  background-color: rgb(87, 187, 255);
+  color: rgb(255, 255, 255);
+}
+
+.navIcon {
+  width: 32px;
+  height: 32px;
+}
