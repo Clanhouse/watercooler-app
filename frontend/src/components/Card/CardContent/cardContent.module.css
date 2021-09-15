@@ -13,14 +13,12 @@
 }
 
 .cardContent__userName {
-  @apply text-base font-semibold;
+  @apply text-base  font-semibold;
 }
 
 .cardContent__userPosition {
-  @apply text-xs font-extralight;
-  display: block;
+  @apply text-xs text-gray-400;
   margin-left: 10px;
-  padding-top: 2px;
 }
 
 .cardContent__text {

@@ -1,0 +1,26 @@
+.cardIconsContainer {
+  @apply text-sm;
+  min-width: 60px;
+  font-family: inherited;
+}
+
+.cardIconsContainer__icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 3px 0;
+}
+
+.icon {
+  cursor: pointer;
+  margin: 0 3px;
+  transform: translateX(0);
+}
+
+.loveIcon {
+  fill: red;
+}
+
+.cardIconsContainer__value {
+  margin-right: 3px;
+}

@@ -1,8 +1,8 @@
-import styles from './card.module.css';
 // import PropTypes from 'prop-types';
+import styles from './card.module.css';
 import Avatar from '../Avatar/Avatar';
-import CardContent from './CardContent';
-import CardIconsContainer from './CardIconsContainer';
+import CardContent from './CardContent/CardContent';
+import CardUserReactions from './CardUserReactions/CardUserReactions';
 
 const Card = () => {
   return (
@@ -11,7 +11,7 @@ const Card = () => {
         <header className={styles.card__header}>
           <Avatar size="large" />
           <CardContent />
-          <CardIconsContainer />
+          <CardUserReactions />
         </header>
       </div>
     </div>
