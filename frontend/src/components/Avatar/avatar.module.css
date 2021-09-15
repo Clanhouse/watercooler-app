@@ -1,0 +1,18 @@
+.avatar {
+  border-radius: 50%;
+}
+
+.small {
+  height: 24px;
+  width: 24px;
+}
+
+.medium {
+  height: 36px;
+  width: 36px;
+}
+
+.large {
+  height: 48px;
+  width: 48px;
+}
