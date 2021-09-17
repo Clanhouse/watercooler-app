@@ -1,24 +1,30 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './card.module.css';
-import Avatar from '../Avatar/Avatar';
-import CardContent from './CardContent/CardContent';
-import CardUserReactions from './CardUserReactions/CardUserReactions';
+import CardHeader from './CardHeader/CardHeader';
 import CardMedia from './CardMedia/CardMedia';
 
 const Card = ({ cardData }) => {
-  const { userName, imageUrl, userPosition, content } = cardData;
+  const { author, imageUrl, authorPosition, content } = cardData;
+
+  const [isLiked, setIsLiked] = useState(false);
+
+  const handleLikePost = () => {
+    setIsLiked(!isLiked);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <header className={styles.card__header}>
-          <Avatar size="large" />
-          <CardContent
-            userName={userName}
-            userPosition={userPosition}
-            content={content}
-          />
-          <CardUserReactions />
-        </header>
+        <CardHeader
+          author={author}
+          authorPosition={authorPosition}
+          content={content}
+          isLiked={isLiked}
+          handleLikePost={handleLikePost}
+        />
+        <div className={styles.cardContent}>{content}</div>
+
         <CardMedia imageUrl={imageUrl} />
       </div>
     </div>
@@ -27,11 +33,10 @@ const Card = ({ cardData }) => {
 
 Card.propTypes = {
   cardData: PropTypes.shape({
-    userName: PropTypes.string,
-    position: PropTypes.string,
+    author: PropTypes.string,
+    authorPosition: PropTypes.string,
     imageUrl: PropTypes.string,
     content: PropTypes.string,
-    userPosition: PropTypes.string,
   }).isRequired,
 };
 

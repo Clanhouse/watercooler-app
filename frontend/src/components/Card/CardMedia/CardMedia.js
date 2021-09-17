@@ -14,7 +14,6 @@ const CardMedia = ({ imageUrl }) => {
 
 CardMedia.propTypes = {
   imageUrl: PropTypes.string,
-  // link: PropTypes.string,
 };
 
 CardMedia.defaultProps = {
