@@ -8,6 +8,7 @@ const CardHeader = ({
   authorPosition,
   isLiked,
   handleLikePost,
+  time,
 }) => {
   return (
     <div className={styles.cardHeader}>
@@ -15,7 +16,7 @@ const CardHeader = ({
       <div className={styles.cardHeader__userInfo}>
         <h1 className={styles.cardHeader__userName}>{author}</h1>
         <h2 className={styles.cardHeader__userPosition}>
-          {`${authorPosition} - 5 mins ago`}
+          {`${authorPosition} - ${time} ago`}
         </h2>
       </div>
       <CardUserReactions
@@ -31,6 +32,7 @@ CardHeader.propTypes = {
   authorPosition: PropTypes.string.isRequired,
   isLiked: PropTypes.bool,
   handleLikePost: PropTypes.func,
+  time: PropTypes.string.isRequired,
 };
 
 CardHeader.defaultProps = {
