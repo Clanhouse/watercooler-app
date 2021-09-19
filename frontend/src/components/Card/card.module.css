@@ -6,19 +6,10 @@
   justify-content: center;
   margin: 10px;
   border-radius: 15px;
-  font-family: inherited;
   overflow: hidden;
-}
-
-.container {
-  @apply bg-gray-300;
-  box-sizing: border-box;
-  width: 500px;
-  padding: 10px 0;
 }
 
 .cardContent {
   width: 100%;
   padding: 5px 15px;
-  font-family: inherited;
 }

@@ -1,7 +1,6 @@
 .cardIconsContainer {
   @apply text-sm;
   min-width: 60px;
-  font-family: inherited;
 }
 
 .cardIconsContainer__icon {

@@ -9,7 +9,16 @@ export const Home = () => (
     <main>
       <h1>Home</h1>
     </main>
-    <Card cardData={cardData} />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: 'lightgray',
+        width: '500px',
+      }}
+    >
+      <Card cardData={cardData} />
+    </div>
 
     <Footer />
   </>

@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+}
+
+.titleContainer {
+  @apply bg-gray-200;
+  padding: 10px 15px;
+}
+
+.site {
+  text-transform: uppercase;
+}
+
+.link {
+  font-weight: bold;
+}

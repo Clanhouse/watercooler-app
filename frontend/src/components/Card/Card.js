@@ -5,7 +5,13 @@ import CardHeader from './CardHeader/CardHeader';
 import CardMedia from './CardMedia/CardMedia';
 
 const Card = ({ cardData }) => {
-  const { author, imageUrl, authorPosition, content } = cardData;
+  const {
+    author,
+    imageUrl,
+    authorPosition,
+    content,
+    link,
+  } = cardData;
 
   const [isLiked, setIsLiked] = useState(false);
 
@@ -14,19 +20,17 @@ const Card = ({ cardData }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <CardHeader
-          author={author}
-          authorPosition={authorPosition}
-          content={content}
-          isLiked={isLiked}
-          handleLikePost={handleLikePost}
-        />
-        <div className={styles.cardContent}>{content}</div>
+    <div className={styles.card}>
+      <CardHeader
+        author={author}
+        authorPosition={authorPosition}
+        content={content}
+        isLiked={isLiked}
+        handleLikePost={handleLikePost}
+      />
+      <div className={styles.cardContent}>{content}</div>
 
-        <CardMedia imageUrl={imageUrl} />
-      </div>
+      <CardMedia imageUrl={imageUrl} link={link} />
     </div>
   );
 };
@@ -37,6 +41,13 @@ Card.propTypes = {
     authorPosition: PropTypes.string,
     imageUrl: PropTypes.string,
     content: PropTypes.string,
+    link: PropTypes.shape({
+      url: PropTypes.string,
+      title: PropTypes.string,
+      description: PropTypes.string,
+      image: PropTypes.string,
+      siteName: PropTypes.string,
+    }),
   }).isRequired,
 };
 
