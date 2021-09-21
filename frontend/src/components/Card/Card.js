@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './card.module.css';
 import CardHeader from './CardHeader/CardHeader';
 import CardMedia from './CardMedia/CardMedia';
+import Comments from './Comments/Comments';
 
 const Card = ({ cardData }) => {
   const {
@@ -12,12 +13,20 @@ const Card = ({ cardData }) => {
     content,
     link,
     timestamp,
+    comments,
   } = cardData;
 
   const [isLiked, setIsLiked] = useState(false);
+  const [isCommentsSectionOpen, setIsCommentsSectionOpen] = useState(
+    false
+  );
 
   const handleLikePost = () => {
     setIsLiked(!isLiked);
+  };
+
+  const handleOpenComments = () => {
+    setIsCommentsSectionOpen(!isCommentsSectionOpen);
   };
 
   const calculatePostTime = (time) => {
@@ -28,7 +37,8 @@ const Card = ({ cardData }) => {
       return `${timeDifference.toFixed(0)} min`;
     if (timeDifference >= 60 && timeDifference < 60 * 24)
       return `${(timeDifference / 60).toFixed(0)} hours`;
-    return `${timeDifference / (60 * 24).toFixed(0)} days`;
+    if (timeDifference / (60 * 24) < 2) return `1 day`;
+    return `${(timeDifference / (60 * 24)).toFixed(0)} days`;
   };
 
   return (
@@ -40,13 +50,26 @@ const Card = ({ cardData }) => {
         isLiked={isLiked}
         handleLikePost={handleLikePost}
         time={calculatePostTime(timestamp)}
+        openComments={handleOpenComments}
       />
       <div className={styles.cardContent}>{content}</div>
-
       <CardMedia imageUrl={imageUrl} link={link} />
+      {isCommentsSectionOpen && <Comments comments={comments} />}
     </div>
   );
 };
+
+const commentShape = {
+  id: PropTypes.number,
+  author: PropTypes.string,
+  content: PropTypes.string,
+};
+
+commentShape.replies = PropTypes.arrayOf(
+  PropTypes.shape(commentShape)
+);
+
+const commentsPropTypes = PropTypes.shape(commentShape);
 
 Card.propTypes = {
   cardData: PropTypes.shape({
@@ -62,6 +85,7 @@ Card.propTypes = {
       image: PropTypes.string,
       siteName: PropTypes.string,
     }),
+    comments: commentsPropTypes,
   }).isRequired,
 };
 

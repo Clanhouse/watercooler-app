@@ -18,5 +18,25 @@ export const cardData = {
       'Authors:Text: Daria Zawiałow, Dawid Podsiadło, Vito BambinoComposition: Bartosz Dziedzic, Aleksander KrzyżanowskiMix/mastering - Piotr PrzedboraVocals: Daria...',
     siteName: 'Youtube',
   },
-  comments: {},
+  comments: [
+    {
+      id: 1,
+      author: 'Mateusz',
+      content: 'Comment 1',
+      replies: [
+        {
+          id: 11,
+          author: 'Edyta',
+          content: 'Comment 11 ',
+          replies: [],
+        },
+      ],
+    },
+    {
+      id: 2,
+      author: 'Tomasz K.',
+      content: 'Comment 2',
+      replies: [],
+    },
+  ],
 };

@@ -9,6 +9,7 @@ const CardHeader = ({
   isLiked,
   handleLikePost,
   time,
+  openComments,
 }) => {
   return (
     <div className={styles.cardHeader}>
@@ -22,6 +23,7 @@ const CardHeader = ({
       <CardUserReactions
         isLiked={isLiked}
         handleLikePost={handleLikePost}
+        openComments={openComments}
       />
     </div>
   );
@@ -33,6 +35,7 @@ CardHeader.propTypes = {
   isLiked: PropTypes.bool,
   handleLikePost: PropTypes.func,
   time: PropTypes.string.isRequired,
+  openComments: PropTypes.func.isRequired,
 };
 
 CardHeader.defaultProps = {

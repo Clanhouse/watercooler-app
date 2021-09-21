@@ -5,7 +5,11 @@ import { ReactComponent as SpeechIcon } from '../../../assets/speechIcon.svg';
 import { ReactComponent as LoveIconOutlined } from '../../../assets/love_icon_outlined.svg';
 import { ReactComponent as LoveIconFullfiled } from '../../../assets/love_icon_fullfiled.svg';
 
-const CardUserReactions = ({ isLiked, handleLikePost }) => {
+const CardUserReactions = ({
+  isLiked,
+  handleLikePost,
+  openComments,
+}) => {
   return (
     <div className={styles.cardIconsContainer}>
       <div className={styles.cardIconsContainer__icon}>
@@ -24,7 +28,7 @@ const CardUserReactions = ({ isLiked, handleLikePost }) => {
       </div>
       <div className={styles.cardIconsContainer__icon}>
         <span className={styles.cardIconsContainer__value}>12</span>{' '}
-        <SpeechIcon className={styles.icon} />
+        <SpeechIcon className={styles.icon} onClick={openComments} />
       </div>
     </div>
   );
@@ -33,6 +37,7 @@ const CardUserReactions = ({ isLiked, handleLikePost }) => {
 CardUserReactions.propTypes = {
   isLiked: PropTypes.bool,
   handleLikePost: PropTypes.func,
+  openComments: PropTypes.func.isRequired,
 };
 
 CardUserReactions.defaultProps = {
