@@ -1,5 +1,3 @@
-// import cardExample from './cardExample.png';
-
 export const cardData = {
   id: 123243212,
   author: 'Aneta Maszczak',
@@ -18,6 +16,7 @@ export const cardData = {
       'Authors:Text: Daria Zawiałow, Dawid Podsiadło, Vito BambinoComposition: Bartosz Dziedzic, Aleksander KrzyżanowskiMix/mastering - Piotr PrzedboraVocals: Daria...',
     siteName: 'Youtube',
   },
+  video: null,
   comments: [
     {
       id: 1,

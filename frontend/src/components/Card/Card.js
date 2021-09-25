@@ -14,6 +14,7 @@ const Card = ({ cardData }) => {
     link,
     timestamp,
     comments,
+    video,
   } = cardData;
 
   const [isLiked, setIsLiked] = useState(false);
@@ -53,7 +54,7 @@ const Card = ({ cardData }) => {
         openComments={handleOpenComments}
       />
       <div className={styles.cardContent}>{content}</div>
-      <CardMedia imageUrl={imageUrl} link={link} />
+      <CardMedia imageUrl={imageUrl} link={link} video={video} />
       {isCommentsSectionOpen && <Comments comments={comments} />}
     </div>
   );
@@ -84,6 +85,10 @@ Card.propTypes = {
       description: PropTypes.string,
       image: PropTypes.string,
       siteName: PropTypes.string,
+    }),
+    video: PropTypes.shape({
+      src: PropTypes.string,
+      captions: PropTypes.string,
     }),
     comments: commentsPropTypes,
   }).isRequired,
