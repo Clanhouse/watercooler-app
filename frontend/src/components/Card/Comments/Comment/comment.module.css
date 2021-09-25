@@ -1,0 +1,50 @@
+.threadContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.commentContainer {
+  display: flex;
+  flex-shrink: 0;
+  flex-grow: 1;
+  align-items: center;
+  padding: 5px;
+}
+
+.comment {
+  @apply bg-gray-200;
+  border-radius: 10px;
+  flex-grow: 1;
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.author {
+  @apply text-xs;
+  font-weight: bold;
+}
+
+.content {
+  @apply text-sm;
+}
+
+.replies {
+  margin-left: 8%;
+}
+
+.commentButton {
+  @apply text-xs;
+  width: 200px;
+  padding-top: 0;
+  transition: 0.4s all;
+}
+
+.commentButton:hover {
+  letter-spacing: 1px;
+}
+
+.commentButton:focus {
+  border: none;
+  outline: none;
+}
